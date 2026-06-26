@@ -8,7 +8,7 @@ from glob import glob
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 model_yolo = YOLO('Model/YOLO/best.pt')
 
-MODEL_CNN_PATH = 'Model/CNN/cnn.keras'
+MODEL_CNN_PATH = 'Model/CNN/cnn_cleaned.keras'
 if os.path.exists(MODEL_CNN_PATH):
     model_cnn = tf.keras.models.load_model(MODEL_CNN_PATH)
     print(f"Berhasil memuat model CNN: {MODEL_CNN_PATH}")
