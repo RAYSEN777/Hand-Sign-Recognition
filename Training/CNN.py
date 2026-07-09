@@ -27,7 +27,6 @@ DATASET_DIR = 'Dataset/CNN_Images_Cleaned'
 IMAGE_X, IMAGE_Y = 64, 64  
 
 def get_num_of_classes():
-    """Menghitung jumlah kelas/folder di dalam direktori dataset."""
     return len(glob(os.path.join(DATASET_DIR, '*')))
 
 def load_dataset():
