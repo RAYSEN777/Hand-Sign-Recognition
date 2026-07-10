@@ -1,0 +1,340 @@
+ 
+=========================================
+Jumlah GPU Terdeteksi: 1
+Nama GPU: [PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]
+STATUS: Training akan berjalan menggunakan GPU! 🚀
+=========================================
+
+🔍 Cache tidak ditemukan. Memulai pemrosesan dataset dari awal...
+Membaca kelas: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '_blank_']
+-> Memuat 1907 gambar dari Kelas A...
+-> Memuat 1619 gambar dari Kelas B...
+-> Memuat 1761 gambar dari Kelas C...
+-> Memuat 1691 gambar dari Kelas D...
+-> Memuat 1780 gambar dari Kelas E...
+-> Memuat 1685 gambar dari Kelas F...
+-> Memuat 1666 gambar dari Kelas G...
+-> Memuat 1551 gambar dari Kelas H...
+-> Memuat 1413 gambar dari Kelas I...
+-> Memuat 1465 gambar dari Kelas J...
+-> Memuat 1789 gambar dari Kelas K...
+-> Memuat 1758 gambar dari Kelas L...
+-> Memuat 1728 gambar dari Kelas M...
+-> Memuat 1658 gambar dari Kelas N...
+-> Memuat 1714 gambar dari Kelas O...
+-> Memuat 1753 gambar dari Kelas P...
+-> Memuat 1642 gambar dari Kelas Q...
+-> Memuat 1706 gambar dari Kelas R...
+-> Memuat 1785 gambar dari Kelas S...
+-> Memuat 2004 gambar dari Kelas T...
+-> Memuat 1726 gambar dari Kelas U...
+-> Memuat 1615 gambar dari Kelas V...
+-> Memuat 1698 gambar dari Kelas W...
+-> Memuat 1864 gambar dari Kelas X...
+-> Memuat 1725 gambar dari Kelas Y...
+-> Memuat 1434 gambar dari Kelas Z...
+-> Memuat 1525 gambar dari Kelas _blank_...
+
+Memisahkan dataset (80% Train, 20% Validasi)...
+💾 Menyimpan data hasil proses ke 'dataset_processed.npz' untuk dijalankan berikutnya...
+✅ Data sukses dicache!
+Ukuran Akhir Data Training: (36529, 128, 128, 1)
+Ukuran Akhir Data Validasi: (9133, 128, 128, 1)
+
+Model: "sequential"
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ random_rotation                 │ (None, 128, 128, 1)    │             0 │
+│ (RandomRotation)                │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ random_zoom (RandomZoom)        │ (None, 128, 128, 1)    │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ random_translation              │ (None, 128, 128, 1)    │             0 │
+│ (RandomTranslation)             │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d (Conv2D)                 │ (None, 128, 128, 32)   │           320 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization             │ (None, 128, 128, 32)   │           128 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_1 (Conv2D)               │ (None, 128, 128, 32)   │         9,248 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_1           │ (None, 128, 128, 32)   │           128 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d (MaxPooling2D)    │ (None, 64, 64, 32)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout (Dropout)               │ (None, 64, 64, 32)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_2 (Conv2D)               │ (None, 64, 64, 64)     │        18,496 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_2           │ (None, 64, 64, 64)     │           256 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_3 (Conv2D)               │ (None, 64, 64, 64)     │        36,928 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_3           │ (None, 64, 64, 64)     │           256 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d_1 (MaxPooling2D)  │ (None, 32, 32, 64)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_1 (Dropout)             │ (None, 32, 32, 64)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_4 (Conv2D)               │ (None, 32, 32, 128)    │        73,856 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_4           │ (None, 32, 32, 128)    │           512 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d_2 (MaxPooling2D)  │ (None, 16, 16, 128)    │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_2 (Dropout)             │ (None, 16, 16, 128)    │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ global_average_pooling2d        │ (None, 128)            │             0 │
+│ (GlobalAveragePooling2D)        │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense (Dense)                   │ (None, 256)            │        33,024 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_3 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_1 (Dense)                 │ (None, 27)             │         6,939 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+
+ Total params: 180,091 (703.48 KB)
+
+ Trainable params: 179,451 (700.98 KB)
+
+ Non-trainable params: 640 (2.50 KB)
+
+
+Memulai proses melatih model (Training)...
+Epoch 1/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 164ms/step - accuracy: 0.3907 - loss: 1.9905
+Epoch 1: val_accuracy improved from None to 0.09099, saving model to sign_language_best_model.keras
+
+Epoch 1: finished saving model to sign_language_best_model.keras
+571/571 ━━━━━━━━━━━━━━━━━━━━ 115s 176ms/step - accuracy: 0.6091 - loss: 1.2702 - val_accuracy: 0.0910 - val_loss: 8.9080 - learning_rate: 0.0010
+Epoch 2/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9317 - loss: 0.2852
+Epoch 2: val_accuracy improved from 0.09099 to 0.94646, saving model to sign_language_best_model.keras
+
+Epoch 2: finished saving model to sign_language_best_model.keras
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 179ms/step - accuracy: 0.9484 - loss: 0.2220 - val_accuracy: 0.9465 - val_loss: 0.2117 - learning_rate: 0.0010
+Epoch 3/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9786 - loss: 0.1140
+Epoch 3: val_accuracy improved from 0.94646 to 0.95456, saving model to sign_language_best_model.keras
+
+Epoch 3: finished saving model to sign_language_best_model.keras
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9807 - loss: 0.1070 - val_accuracy: 0.9546 - val_loss: 0.1730 - learning_rate: 0.0010
+Epoch 4/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 170ms/step - accuracy: 0.9872 - loss: 0.0804
+Epoch 4: val_accuracy did not improve from 0.95456
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9889 - loss: 0.0746 - val_accuracy: 0.8778 - val_loss: 0.4317 - learning_rate: 0.0010
+Epoch 5/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9902 - loss: 0.0680
+Epoch 5: val_accuracy did not improve from 0.95456
+
+Epoch 5: ReduceLROnPlateau reducing learning rate to 0.00020000000949949026.
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9905 - loss: 0.0661 - val_accuracy: 0.6170 - val_loss: 1.8760 - learning_rate: 0.0010
+Epoch 6/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 170ms/step - accuracy: 0.9959 - loss: 0.0458
+Epoch 6: val_accuracy improved from 0.95456 to 0.99661, saving model to sign_language_best_model.keras
+
+Epoch 6: finished saving model to sign_language_best_model.keras
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9965 - loss: 0.0435 - val_accuracy: 0.9966 - val_loss: 0.0452 - learning_rate: 2.0000e-04
+Epoch 7/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 170ms/step - accuracy: 0.9973 - loss: 0.0417
+Epoch 7: val_accuracy improved from 0.99661 to 0.99858, saving model to sign_language_best_model.keras
+
+Epoch 7: finished saving model to sign_language_best_model.keras
+571/571 ━━━━━━━━━━━━━━━━━━━━ 101s 178ms/step - accuracy: 0.9972 - loss: 0.0413 - val_accuracy: 0.9986 - val_loss: 0.0345 - learning_rate: 2.0000e-04
+Epoch 8/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 170ms/step - accuracy: 0.9980 - loss: 0.0382
+Epoch 8: val_accuracy did not improve from 0.99858
+571/571 ━━━━━━━━━━━━━━━━━━━━ 101s 178ms/step - accuracy: 0.9978 - loss: 0.0386 - val_accuracy: 0.9985 - val_loss: 0.0356 - learning_rate: 2.0000e-04
+Epoch 9/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9977 - loss: 0.0375
+Epoch 9: val_accuracy did not improve from 0.99858
+
+Epoch 9: ReduceLROnPlateau reducing learning rate to 4.0000001899898055e-05.
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9975 - loss: 0.0375 - val_accuracy: 0.9966 - val_loss: 0.0431 - learning_rate: 2.0000e-04
+Epoch 10/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9975 - loss: 0.0365
+Epoch 10: val_accuracy improved from 0.99858 to 0.99934, saving model to sign_language_best_model.keras
+
+Epoch 10: finished saving model to sign_language_best_model.keras
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9982 - loss: 0.0348 - val_accuracy: 0.9993 - val_loss: 0.0303 - learning_rate: 4.0000e-05
+Epoch 11/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9985 - loss: 0.0330
+Epoch 11: val_accuracy did not improve from 0.99934
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9985 - loss: 0.0328 - val_accuracy: 0.9993 - val_loss: 0.0300 - learning_rate: 4.0000e-05
+Epoch 12/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9987 - loss: 0.0325
+Epoch 12: val_accuracy did not improve from 0.99934
+571/571 ━━━━━━━━━━━━━━━━━━━━ 103s 180ms/step - accuracy: 0.9987 - loss: 0.0323 - val_accuracy: 0.9988 - val_loss: 0.0307 - learning_rate: 4.0000e-05
+Epoch 13/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 170ms/step - accuracy: 0.9981 - loss: 0.0330
+Epoch 13: val_accuracy did not improve from 0.99934
+
+Epoch 13: ReduceLROnPlateau reducing learning rate to 1e-05.
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9985 - loss: 0.0319 - val_accuracy: 0.9989 - val_loss: 0.0315 - learning_rate: 4.0000e-05
+Epoch 14/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9990 - loss: 0.0309
+Epoch 14: val_accuracy did not improve from 0.99934
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9988 - loss: 0.0312 - val_accuracy: 0.9992 - val_loss: 0.0300 - learning_rate: 1.0000e-05
+Epoch 15/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9989 - loss: 0.0313
+Epoch 15: val_accuracy improved from 0.99934 to 0.99945, saving model to sign_language_best_model.keras
+
+Epoch 15: finished saving model to sign_language_best_model.keras
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9990 - loss: 0.0310 - val_accuracy: 0.9995 - val_loss: 0.0293 - learning_rate: 1.0000e-05
+Epoch 16/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9988 - loss: 0.0311
+Epoch 16: val_accuracy improved from 0.99945 to 0.99956, saving model to sign_language_best_model.keras
+
+Epoch 16: finished saving model to sign_language_best_model.keras
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9988 - loss: 0.0312 - val_accuracy: 0.9996 - val_loss: 0.0292 - learning_rate: 1.0000e-05
+Epoch 17/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9987 - loss: 0.0306
+Epoch 17: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9990 - loss: 0.0302 - val_accuracy: 0.9995 - val_loss: 0.0294 - learning_rate: 1.0000e-05
+Epoch 18/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9987 - loss: 0.0313
+Epoch 18: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9988 - loss: 0.0307 - val_accuracy: 0.9996 - val_loss: 0.0291 - learning_rate: 1.0000e-05
+Epoch 19/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9986 - loss: 0.0305
+Epoch 19: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9989 - loss: 0.0303 - val_accuracy: 0.9995 - val_loss: 0.0286 - learning_rate: 1.0000e-05
+Epoch 20/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9989 - loss: 0.0301
+Epoch 20: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 179ms/step - accuracy: 0.9985 - loss: 0.0305 - val_accuracy: 0.9993 - val_loss: 0.0286 - learning_rate: 1.0000e-05
+Epoch 21/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9993 - loss: 0.0294
+Epoch 21: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9990 - loss: 0.0299 - val_accuracy: 0.9991 - val_loss: 0.0288 - learning_rate: 1.0000e-05
+Epoch 22/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9987 - loss: 0.0301
+Epoch 22: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9986 - loss: 0.0302 - val_accuracy: 0.9995 - val_loss: 0.0284 - learning_rate: 1.0000e-05
+Epoch 23/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9984 - loss: 0.0301
+Epoch 23: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9985 - loss: 0.0299 - val_accuracy: 0.9996 - val_loss: 0.0283 - learning_rate: 1.0000e-05
+Epoch 24/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9987 - loss: 0.0302
+Epoch 24: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9987 - loss: 0.0299 - val_accuracy: 0.9992 - val_loss: 0.0282 - learning_rate: 1.0000e-05
+Epoch 25/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9984 - loss: 0.0300
+Epoch 25: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9987 - loss: 0.0294 - val_accuracy: 0.9992 - val_loss: 0.0282 - learning_rate: 1.0000e-05
+Epoch 26/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9991 - loss: 0.0290
+Epoch 26: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9989 - loss: 0.0292 - val_accuracy: 0.9995 - val_loss: 0.0277 - learning_rate: 1.0000e-05
+Epoch 27/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9989 - loss: 0.0288
+Epoch 27: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9988 - loss: 0.0297 - val_accuracy: 0.9992 - val_loss: 0.0281 - learning_rate: 1.0000e-05
+Epoch 28/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9983 - loss: 0.0298
+Epoch 28: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9987 - loss: 0.0293 - val_accuracy: 0.9992 - val_loss: 0.0282 - learning_rate: 1.0000e-05
+Epoch 29/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9991 - loss: 0.0291
+Epoch 29: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9991 - loss: 0.0291 - val_accuracy: 0.9993 - val_loss: 0.0274 - learning_rate: 1.0000e-05
+Epoch 30/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9988 - loss: 0.0293
+Epoch 30: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9987 - loss: 0.0295 - val_accuracy: 0.9990 - val_loss: 0.0280 - learning_rate: 1.0000e-05
+Epoch 31/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9991 - loss: 0.0283
+Epoch 31: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9989 - loss: 0.0287 - val_accuracy: 0.9996 - val_loss: 0.0271 - learning_rate: 1.0000e-05
+Epoch 32/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9992 - loss: 0.0284
+Epoch 32: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9990 - loss: 0.0285 - val_accuracy: 0.9992 - val_loss: 0.0279 - learning_rate: 1.0000e-05
+Epoch 33/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9988 - loss: 0.0292
+Epoch 33: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9987 - loss: 0.0290 - val_accuracy: 0.9992 - val_loss: 0.0271 - learning_rate: 1.0000e-05
+Epoch 34/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9992 - loss: 0.0281
+Epoch 34: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9991 - loss: 0.0280 - val_accuracy: 0.9996 - val_loss: 0.0271 - learning_rate: 1.0000e-05
+Epoch 35/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9991 - loss: 0.0283
+Epoch 35: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9992 - loss: 0.0279 - val_accuracy: 0.9995 - val_loss: 0.0269 - learning_rate: 1.0000e-05
+Epoch 36/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9989 - loss: 0.0286
+Epoch 36: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 179ms/step - accuracy: 0.9991 - loss: 0.0281 - val_accuracy: 0.9996 - val_loss: 0.0269 - learning_rate: 1.0000e-05
+Epoch 37/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9993 - loss: 0.0274
+Epoch 37: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9992 - loss: 0.0274 - val_accuracy: 0.9993 - val_loss: 0.0266 - learning_rate: 1.0000e-05
+Epoch 38/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9992 - loss: 0.0274
+Epoch 38: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9992 - loss: 0.0275 - val_accuracy: 0.9996 - val_loss: 0.0268 - learning_rate: 1.0000e-05
+Epoch 39/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9992 - loss: 0.0271
+Epoch 39: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9992 - loss: 0.0272 - val_accuracy: 0.9996 - val_loss: 0.0266 - learning_rate: 1.0000e-05
+Epoch 40/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9990 - loss: 0.0278
+Epoch 40: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 179ms/step - accuracy: 0.9991 - loss: 0.0276 - val_accuracy: 0.9993 - val_loss: 0.0267 - learning_rate: 1.0000e-05
+Epoch 41/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9995 - loss: 0.0269
+Epoch 41: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9993 - loss: 0.0270 - val_accuracy: 0.9995 - val_loss: 0.0267 - learning_rate: 1.0000e-05
+Epoch 42/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9989 - loss: 0.0273
+Epoch 42: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9989 - loss: 0.0274 - val_accuracy: 0.9995 - val_loss: 0.0269 - learning_rate: 1.0000e-05
+Epoch 43/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9987 - loss: 0.0274
+Epoch 43: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9988 - loss: 0.0276 - val_accuracy: 0.9996 - val_loss: 0.0265 - learning_rate: 1.0000e-05
+Epoch 44/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9991 - loss: 0.0271
+Epoch 44: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 179ms/step - accuracy: 0.9990 - loss: 0.0273 - val_accuracy: 0.9996 - val_loss: 0.0260 - learning_rate: 1.0000e-05
+Epoch 45/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9992 - loss: 0.0267
+Epoch 45: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9990 - loss: 0.0271 - val_accuracy: 0.9991 - val_loss: 0.0258 - learning_rate: 1.0000e-05
+Epoch 46/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9983 - loss: 0.0276
+Epoch 46: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9987 - loss: 0.0271 - val_accuracy: 0.9993 - val_loss: 0.0261 - learning_rate: 1.0000e-05
+Epoch 47/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9985 - loss: 0.0272
+Epoch 47: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9988 - loss: 0.0270 - val_accuracy: 0.9993 - val_loss: 0.0267 - learning_rate: 1.0000e-05
+Epoch 48/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9994 - loss: 0.0261
+Epoch 48: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9993 - loss: 0.0264 - val_accuracy: 0.9995 - val_loss: 0.0255 - learning_rate: 1.0000e-05
+Epoch 49/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 170ms/step - accuracy: 0.9992 - loss: 0.0267
+Epoch 49: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 101s 178ms/step - accuracy: 0.9991 - loss: 0.0268 - val_accuracy: 0.9995 - val_loss: 0.0257 - learning_rate: 1.0000e-05
+Epoch 50/50
+571/571 ━━━━━━━━━━━━━━━━━━━━ 0s 171ms/step - accuracy: 0.9992 - loss: 0.0266
+Epoch 50: val_accuracy did not improve from 0.99956
+571/571 ━━━━━━━━━━━━━━━━━━━━ 102s 178ms/step - accuracy: 0.9990 - loss: 0.0268 - val_accuracy: 0.9996 - val_loss: 0.0256 - learning_rate: 1.0000e-05
+
+=========================================
+Selesai! Model terbaik otomatis disimpan sebagai: 'sign_language_best_model.keras'
+Akurasi Validasi Akhir: 99.96%
+CNN Error Rate: 0.04%
+=========================================
+Model versi final berhasil disimpan secara manual!

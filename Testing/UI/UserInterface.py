@@ -8,9 +8,6 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 from PIL import Image, ImageTk, ImageDraw, ImageFont
 
-# ============================================================
-#  Inisialisasi Model & Konfigurasi
-# ============================================================
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 model_yolo = YOLO('Model/YOLO/best.pt')
 
@@ -26,81 +23,60 @@ IMAGE_X, IMAGE_Y = 128, 128
 DATASET_DIR = 'Dataset/CNN_Images_Cleaned'
 LABELS = sorted([os.path.basename(x) for x in glob(os.path.join(DATASET_DIR, '*'))])
 
-# ============================================================
-#  Palet Warna & Tipografi (Tema Modern - Dark)
-# ============================================================
-COLOR_BG          = "#0f172a"   # slate-900 (background utama)
-COLOR_SIDEBAR     = "#111827"   # gray-900 (panel kontrol)
-COLOR_CARD        = "#1e293b"   # slate-800 (kartu / video frame)
+COLOR_BG          = "#0f172a"   
+COLOR_SIDEBAR     = "#111827"   
+COLOR_CARD        = "#1e293b"   
 COLOR_CARD_ALT    = "#172033"
 COLOR_BORDER      = "#2d3b52"
-COLOR_ACCENT      = "#6366f1"   # indigo-500
-COLOR_ACCENT_HOV  = "#818cf8"   # indigo-400
-COLOR_SUCCESS     = "#22c55e"   # green-500
+COLOR_ACCENT      = "#6366f1"  
+COLOR_ACCENT_HOV  = "#818cf8"  
+COLOR_SUCCESS     = "#22c55e"  
 COLOR_SUCCESS_HOV = "#4ade80"
-COLOR_DANGER      = "#ef4444"   # red-500
+COLOR_DANGER      = "#ef4444"  
 COLOR_DANGER_HOV  = "#f87171"
-COLOR_WARNING     = "#f59e0b"   # amber-500
-COLOR_TEXT        = "#f1f5f9"   # slate-100
-COLOR_TEXT_MUTED  = "#94a3b8"   # slate-400
-COLOR_DISABLED    = "#334155"   # slate-700
+COLOR_WARNING     = "#f59e0b"  
+COLOR_TEXT        = "#f1f5f9"  
+COLOR_TEXT_MUTED  = "#94a3b8"  
+COLOR_DISABLED    = "#334155"  
 
 FONT_FAMILY = "Segoe UI"
 
-# ============================================================
-#  Variabel Global
-# ============================================================
 cap = None
 is_playing = False
-
-# --- Variabel Tambahan untuk CTC Decoding & Teks ---
-final_word = ""             # Menyimpan kata yang terbentuk (e.g., "SAYA")
-last_stable_letter = None   # Huruf terakhir yang dimasukkan ke kata
-CONFIDENCE_THRESHOLD = 75   # Batas minimal keyakinan model (persen)
-STABLE_FRAME_REQ = 3        # Jumlah frame berturut-turut agar huruf dianggap valid
-letter_streak_counter = 0   # Counter kestabilan huruf
-last_seen_letter = None     # Huruf pada frame sebelumnya
-
-# Definisikan nama class pemisah Anda di sini (sesuaikan dengan nama folder di dataset)
+ 
+final_word = ""           
+last_stable_letter = None    
+CONFIDENCE_THRESHOLD = 75    
+STABLE_FRAME_REQ = 3     
+letter_streak_counter = 0   
+last_seen_letter = None     
+ 
 BLANK_LABEL = "_blank_" 
 
-# ============================================================
-#  Fungsi Logika Deteksi & CTC Decoding dengan Class Pemisah
-# ============================================================
 def decode_ctc_step(predicted_label, confidence):
     """Menerapkan prinsip CTC Decoding sejati menggunakan Class Pemisah (Blank)"""
     global final_word, last_stable_letter
     global letter_streak_counter, last_seen_letter
-
-    # 1. Jalankan filter tingkat keyakinan
+ 
     if confidence < CONFIDENCE_THRESHOLD:
         return
-
-    # 2. Cek stabilitas prediksi frame demi frame
+ 
     if predicted_label == last_seen_letter:
         letter_streak_counter += 1
     else:
         letter_streak_counter = 1
         last_seen_letter = predicted_label
-
-    # 3. Jika prediksi sudah stabil sepanjang beberapa frame, eksekusi aturan CTC
+ 
     if letter_streak_counter >= STABLE_FRAME_REQ:
-        
-        # JIKA YANG TERDETEKSI ADALAH CLASS PEMISAH/BLANK:
+ 
         if predicted_label == BLANK_LABEL:
-            # Reset memory huruf terakhir. Ini kuncinya! 
-            # Jadi kalau setelah ini muncul huruf yang sama lagi (misal dari A -> blank -> A),
-            # sistem tahu bahwa itu adalah huruf 'A' baru, bukan kelanjutan huruf lama.
             last_stable_letter = None 
-            
-        # JIKA YANG TERDETEKSI ADALAH HURUF BIASA (A-Z):
+
         else:
-            # Masukkan huruf hanya jika berbeda dengan huruf stabil terakhir
             if predicted_label != last_stable_letter:
                 final_word += predicted_label
                 last_stable_letter = predicted_label
-                lbl_word_output.config(text=final_word) # Update teks di UI
-
+                lbl_word_output.config(text=final_word) 
 
 def process_frame(img):
     """Memproses frame menggunakan YOLO dan CNN"""
@@ -127,7 +103,6 @@ def process_frame(img):
                     predicted_label = LABELS[class_idx]
                     confidence = predictions[0][class_idx] * 100
 
-                    # Tampilan teks box deteksi disesuaikan jika berupa class pemisah
                     display_label = "[ JEDA ]" if predicted_label == BLANK_LABEL else predicted_label
                     text = f"{display_label} ({confidence:.1f}%)"
                     
@@ -136,7 +111,6 @@ def process_frame(img):
                     cv2.putText(img, text, (x1 + 5, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX,
                                 0.8, (255, 255, 255), 2)
 
-                    # Update preview tangan di UI
                     img_preview = cv2.resize(gray_crop, (140, 140))
                     img_preview = Image.fromarray(img_preview)
                     imgtk_preview = ImageTk.PhotoImage(image=img_preview)
@@ -147,7 +121,6 @@ def process_frame(img):
                     lbl_prediction_conf.config(text=f"Keyakinan: {confidence:.1f}%")
                     update_confidence_bar(confidence)
 
-                    # JALANKAN PROSES CTC DECODER DENGAN CLASS PEMISAH
                     decode_ctc_step(predicted_label, confidence)
 
                 except Exception:
@@ -156,7 +129,6 @@ def process_frame(img):
 
 
 def update_confidence_bar(confidence):
-    """Menggambar progress bar keyakinan prediksi secara custom (rounded)."""
     canvas_conf.delete("all")
     w = 200
     h = 14
@@ -167,7 +139,6 @@ def update_confidence_bar(confidence):
 
 
 def update_video():
-    """Looping untuk memperbarui frame video pada UI Tkinter"""
     global cap, is_playing
     if is_playing and cap is not None:
         success, img = cap.read()
@@ -188,14 +159,9 @@ def update_video():
             stop_video()
             messagebox.showinfo("Info", "Video selesai diputar.")
 
-
-# ============================================================
-#  Fungsi Kontrol UI
-# ============================================================
 def set_status(text, color=COLOR_TEXT_MUTED):
     status_dot.itemconfig(status_dot_circle, fill=color)
     lbl_status.config(text=text)
-
 
 def select_video():
     global cap, is_playing
@@ -207,7 +173,6 @@ def select_video():
         set_status("Memutar file video", COLOR_SUCCESS)
         start_video()
 
-
 def start_camera():
     global cap, is_playing
     stop_video()
@@ -216,7 +181,6 @@ def start_camera():
     set_status("Webcam aktif", COLOR_SUCCESS)
     start_video()
 
-
 def start_video():
     global is_playing
     if cap is not None:
@@ -224,7 +188,6 @@ def start_video():
         btn_start.set_state(tk.DISABLED)
         btn_stop.set_state(tk.NORMAL)
         update_video()
-
 
 def stop_video():
     global is_playing, cap
@@ -243,7 +206,6 @@ def stop_video():
     lbl_source.config(text="Belum ada sumber")
     set_status("Berhenti", COLOR_TEXT_MUTED)
 
-
 def clear_word():
     """Mengosongkan kata terjemahan yang terkumpul"""
     global final_word, last_stable_letter
@@ -251,22 +213,16 @@ def clear_word():
     last_stable_letter = None
     lbl_word_output.config(text="...")
 
-
 def add_space():
     """Menambahkan spasi pada kata"""
     global final_word
     final_word += " "
     lbl_word_output.config(text=final_word)
 
-
 def on_closing():
     stop_video()
     root.destroy()
 
-
-# ============================================================
-#  Widget Kustom: Tombol Modern dengan Hover & Rounded Corner
-# ============================================================
 class ModernButton(tk.Canvas):
     def __init__(self, parent, text, command, base_color, hover_color,
                  icon="", width=210, height=46, disabled_color=COLOR_DISABLED, **kwargs):
@@ -320,17 +276,12 @@ class ModernButton(tk.Canvas):
             self._draw(self.base_color)
             self.config(cursor="hand2")
 
-
-# ============================================================
-#  Pembuatan Layout UI
-# ============================================================
 root = tk.Tk()
 root.title("Sign Language Detection Dashboard  •  YOLOv8 + CNN + True CTC Decoder")
 root.geometry("1180x740")
 root.minsize(1040, 680)
 root.configure(bg=COLOR_BG)
 
-# ---------- Header ----------
 header = tk.Frame(root, bg=COLOR_BG, height=64)
 header.pack(side=tk.TOP, fill=tk.X, padx=24, pady=(18, 0))
 
@@ -339,11 +290,9 @@ tk.Label(header, text="🤟  Sign Language Detection", font=(FONT_FAMILY, 18, "b
 tk.Label(header, text="YOLOv8 Detector + CNN Classifier + True CTC Logic", font=(FONT_FAMILY, 10),
          fg=COLOR_TEXT_MUTED, bg=COLOR_BG).pack(side=tk.LEFT, padx=(12, 0), pady=(6, 0))
 
-# ---------- Body Container ----------
 body = tk.Frame(root, bg=COLOR_BG)
 body.pack(side=tk.TOP, fill=tk.BOTH, expand=True, padx=24, pady=12)
 
-# ---------- Panel Video (kiri) ----------
 frame_video_card = tk.Frame(body, bg=COLOR_CARD, bd=0, highlightbackground=COLOR_BORDER,
                              highlightthickness=1)
 frame_video_card.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(0, 18))
@@ -370,7 +319,6 @@ img_placeholder = ImageTk.PhotoImage(Image.new("RGB", (760, 480), "#000000"))
 lbl_video = tk.Label(video_wrap, image=img_placeholder, bg="#000000")
 lbl_video.pack(fill=tk.BOTH, expand=True)
 
-# ---------- Panel Kontrol & Hasil (kanan) ----------
 sidebar = tk.Frame(body, bg=COLOR_SIDEBAR, width=270, highlightbackground=COLOR_BORDER,
                     highlightthickness=1)
 sidebar.pack(side=tk.RIGHT, fill=tk.Y)
@@ -398,7 +346,6 @@ btn_stop.set_state(tk.DISABLED)
 
 tk.Frame(inner, height=1, bg=COLOR_BORDER).pack(fill=tk.X, pady=12)
 
-# ---------- Kartu Hasil Prediksi ----------
 tk.Label(inner, text="HASIL DETEKSI HURUF", font=(FONT_FAMILY, 11, "bold"), fg=COLOR_TEXT_MUTED,
          bg=COLOR_SIDEBAR).pack(anchor=tk.W, pady=(0, 6))
 
@@ -426,8 +373,6 @@ canvas_conf = tk.Canvas(result_inner, width=200, height=14, bg=COLOR_CARD_ALT, h
 canvas_conf.pack()
 canvas_conf.create_rectangle(0, 0, 200, 14, fill=COLOR_DISABLED, outline="")
 
-
-# ---------- PANEL OUTPUT KALIMAT (Bawah) ----------
 word_panel = tk.Frame(root, bg=COLOR_CARD, highlightbackground=COLOR_BORDER, highlightthickness=1)
 word_panel.pack(side=tk.TOP, fill=tk.X, padx=24, pady=(4, 12))
 
@@ -441,7 +386,6 @@ lbl_word_output = tk.Label(word_inner, text="...", font=(FONT_FAMILY, 16, "bold"
                            fg=COLOR_SUCCESS_HOV, bg=COLOR_CARD)
 lbl_word_output.pack(side=tk.LEFT, fill=tk.X, expand=True, anchor=tk.W)
 
-# Tombol Tambahan untuk Manajemen Teks Kata
 btn_space = tk.Button(word_inner, text="[ Spasi ]", font=(FONT_FAMILY, 9, "bold"),
                       command=add_space, bg=COLOR_DISABLED, fg=COLOR_TEXT, bd=0, padx=12, pady=4, cursor="hand2")
 btn_space.pack(side=tk.RIGHT, padx=4)
@@ -450,8 +394,6 @@ btn_clear = tk.Button(word_inner, text="Hapus Kata", font=(FONT_FAMILY, 9, "bold
                       command=clear_word, bg=COLOR_DANGER, fg="white", bd=0, padx=12, pady=4, cursor="hand2")
 btn_clear.pack(side=tk.RIGHT, padx=4)
 
-
-# ---------- Footer info ----------
 footer = tk.Frame(root, bg=COLOR_BG)
 footer.pack(side=tk.BOTTOM, fill=tk.X, padx=24, pady=(0, 16))
 tk.Label(footer, text="Model: YOLOv8 (deteksi tangan)  •  CNN (klasifikasi huruf)  •  True CTC Decoder",

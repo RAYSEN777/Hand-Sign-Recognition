@@ -2,8 +2,8 @@ from ultralytics import YOLO
 import cv2
 import os
 
-VIDEO_DATASET_DIR = "Dataset/Training/Blank"  
-CNN_DATASET_DIR = "Dataset/CNN_Images_Blank"            
+VIDEO_DATASET_DIR = "Dataset/Training"  
+CNN_DATASET_DIR = "Dataset/CNN_Images_Cleaned"            
 model_yolo = YOLO('Model/YOLO/best.pt')
 
 if not os.path.exists(CNN_DATASET_DIR):
