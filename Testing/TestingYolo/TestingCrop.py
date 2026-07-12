@@ -4,7 +4,7 @@ import os
 
 video_path = "Dataset/TestVideo/testvid2.mp4" 
 cap = cv2.VideoCapture(video_path)
-model = YOLO('YOLO/best.pt') 
+model = YOLO('Model/YOLO/best.pt') 
 
 cv2.namedWindow("Image", cv2.WINDOW_NORMAL)
 cv2.resizeWindow("Image", 800, 600) 

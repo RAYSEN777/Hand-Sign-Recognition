@@ -8,7 +8,7 @@ from glob import glob
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 model_yolo = YOLO('Model/YOLO/best.pt')
 
-MODEL_CNN_PATH = 'Model/CNN/cnn_optimized.keras'
+MODEL_CNN_PATH = 'Model/CNN/cnn_best2.keras'
 if os.path.exists(MODEL_CNN_PATH):
     model_cnn = tf.keras.models.load_model(MODEL_CNN_PATH)
     print(f"Berhasil memuat model CNN: {MODEL_CNN_PATH}")
@@ -23,7 +23,7 @@ DATASET_DIR = 'Dataset/CNN_Images_Cleaned'
 LABELS = sorted([os.path.basename(x) for x in glob(os.path.join(DATASET_DIR, '*'))])
 print(f"Urutan Label Kelas: {LABELS}")
 
-video_path = "Dataset/TestVideo/testvid7.mp4" 
+video_path = "Dataset/TestVideo/testvid6.mp4" 
 cap = cv2.VideoCapture(video_path)
 
 cv2.namedWindow("Sign Language Detection (YOLO + CNN)", cv2.WINDOW_NORMAL)

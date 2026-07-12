@@ -1,0 +1,100 @@
+Epoch 1: finished saving model to sign_language_best_model.keras
+755/755 ━━━━━━━━━━━━━━━━━━━━ 146s 177ms/step - accuracy: 0.5933 - loss: 1.3101 - val_accuracy: 0.2051 - val_loss: 3.6261 - learning_rate: 0.0010
+Epoch 2: finished saving model to sign_language_best_model.keras
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9522 - loss: 0.2054 - val_accuracy: 0.9341 - val_loss: 0.2172 - learning_rate: 0.0010
+Epoch 3: finished saving model to sign_language_best_model.keras
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 174ms/step - accuracy: 0.9812 - loss: 0.1036 - val_accuracy: 0.9814 - val_loss: 0.1121 - learning_rate: 0.0010
+Epoch 4: val_accuracy did not improve from 0.98137
+755/755 ━━━━━━━━━━━━━━━━━━━━ 130s 173ms/step - accuracy: 0.9887 - loss: 0.0772 - val_accuracy: 0.9125 - val_loss: 0.2733 - learning_rate: 0.0010
+Epoch 5: ReduceLROnPlateau reducing learning rate to 0.00020000000949949026.
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9906 - loss: 0.0663 - val_accuracy: 0.9371 - val_loss: 0.2557 - learning_rate: 0.0010
+Epoch 6: finished saving model to sign_language_best_model.keras
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9969 - loss: 0.0443 - val_accuracy: 0.9990 - val_loss: 0.0386 - learning_rate: 2.0000e-04
+Epoch 7: val_accuracy did not improve from 0.99901
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9978 - loss: 0.0389 - val_accuracy: 0.9985 - val_loss: 0.0429 - learning_rate: 2.0000e-04
+Epoch 8: finished saving model to sign_language_best_model.keras
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9977 - loss: 0.0381 - val_accuracy: 0.9996 - val_loss: 0.0315 - learning_rate: 2.0000e-04
+Epoch 9: val_accuracy did not improve from 0.99959
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9978 - loss: 0.0357 - val_accuracy: 0.9993 - val_loss: 0.0339 - learning_rate: 2.0000e-04
+Epoch 10: val_accuracy did not improve from 0.99959
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9983 - loss: 0.0326 - val_accuracy: 0.9996 - val_loss: 0.0308 - learning_rate: 2.0000e-04
+Epoch 11: val_accuracy did not improve from 0.99959
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9983 - loss: 0.0312 - val_accuracy: 0.9993 - val_loss: 0.0316 - learning_rate: 2.0000e-04
+Epoch 12: ReduceLROnPlateau reducing learning rate to 4.0000001899898055e-05.
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9981 - loss: 0.0293 - val_accuracy: 0.9787 - val_loss: 0.0857 - learning_rate: 2.0000e-04
+Epoch 13: val_accuracy did not improve from 0.99959
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9991 - loss: 0.0259 - val_accuracy: 0.9996 - val_loss: 0.0277 - learning_rate: 4.0000e-05
+Epoch 14: finished saving model to sign_language_best_model.keras
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9991 - loss: 0.0253 - val_accuracy: 0.9998 - val_loss: 0.0274 - learning_rate: 4.0000e-05
+Epoch 15: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9991 - loss: 0.0250 - val_accuracy: 0.9994 - val_loss: 0.0253 - learning_rate: 4.0000e-05
+Epoch 16: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9992 - loss: 0.0241 - val_accuracy: 0.9994 - val_loss: 0.0277 - learning_rate: 4.0000e-05
+Epoch 17: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9992 - loss: 0.0239 - val_accuracy: 0.9998 - val_loss: 0.0250 - learning_rate: 4.0000e-05
+Epoch 18: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9989 - loss: 0.0236 - val_accuracy: 0.9993 - val_loss: 0.0263 - learning_rate: 4.0000e-05
+Epoch 19: ReduceLROnPlateau reducing learning rate to 1e-05.
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 174ms/step - accuracy: 0.9991 - loss: 0.0229 - val_accuracy: 0.9998 - val_loss: 0.0252 - learning_rate: 4.0000e-05
+Epoch 20: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9992 - loss: 0.0222 - val_accuracy: 0.9995 - val_loss: 0.0259 - learning_rate: 1.0000e-05
+Epoch 21: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9993 - loss: 0.0221 - val_accuracy: 0.9994 - val_loss: 0.0261 - learning_rate: 1.0000e-05
+Epoch 22: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9993 - loss: 0.0220 - val_accuracy: 0.9997 - val_loss: 0.0251 - learning_rate: 1.0000e-05
+Epoch 23: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9993 - loss: 0.0217 - val_accuracy: 0.9998 - val_loss: 0.0248 - learning_rate: 1.0000e-05
+Epoch 24: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 136s 180ms/step - accuracy: 0.9994 - loss: 0.0217 - val_accuracy: 0.9996 - val_loss: 0.0258 - learning_rate: 1.0000e-05
+Epoch 25: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9992 - loss: 0.0217 - val_accuracy: 0.9997 - val_loss: 0.0247 - learning_rate: 1.0000e-05
+Epoch 26: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 136s 180ms/step - accuracy: 0.9994 - loss: 0.0213 - val_accuracy: 0.9997 - val_loss: 0.0254 - learning_rate: 1.0000e-05
+Epoch 27: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9993 - loss: 0.0215 - val_accuracy: 0.9988 - val_loss: 0.0288 - learning_rate: 1.0000e-05
+Epoch 28: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9994 - loss: 0.0211 - val_accuracy: 0.9997 - val_loss: 0.0252 - learning_rate: 1.0000e-05
+Epoch 29: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9994 - loss: 0.0213 - val_accuracy: 0.9997 - val_loss: 0.0258 - learning_rate: 1.0000e-05
+Epoch 30: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 174ms/step - accuracy: 0.9993 - loss: 0.0212 - val_accuracy: 0.9993 - val_loss: 0.0268 - learning_rate: 1.0000e-05
+Epoch 31: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9992 - loss: 0.0208 - val_accuracy: 0.9998 - val_loss: 0.0243 - learning_rate: 1.0000e-05
+Epoch 32: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9991 - loss: 0.0213 - val_accuracy: 0.9998 - val_loss: 0.0236 - learning_rate: 1.0000e-05
+Epoch 33: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9993 - loss: 0.0207 - val_accuracy: 0.9997 - val_loss: 0.0242 - learning_rate: 1.0000e-05
+Epoch 34: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9993 - loss: 0.0208 - val_accuracy: 0.9998 - val_loss: 0.0237 - learning_rate: 1.0000e-05
+Epoch 35: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9993 - loss: 0.0207 - val_accuracy: 0.9998 - val_loss: 0.0234 - learning_rate: 1.0000e-05
+Epoch 36: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9993 - loss: 0.0203 - val_accuracy: 0.9998 - val_loss: 0.0231 - learning_rate: 1.0000e-05
+Epoch 37: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 130s 173ms/step - accuracy: 0.9993 - loss: 0.0205 - val_accuracy: 0.9998 - val_loss: 0.0253 - learning_rate: 1.0000e-05
+Epoch 38: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9993 - loss: 0.0202 - val_accuracy: 0.9997 - val_loss: 0.0245 - learning_rate: 1.0000e-05
+Epoch 39: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9993 - loss: 0.0200 - val_accuracy: 0.9998 - val_loss: 0.0228 - learning_rate: 1.0000e-05
+Epoch 40: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 130s 173ms/step - accuracy: 0.9995 - loss: 0.0198 - val_accuracy: 0.9997 - val_loss: 0.0237 - learning_rate: 1.0000e-05
+Epoch 41: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9995 - loss: 0.0198 - val_accuracy: 0.9998 - val_loss: 0.0233 - learning_rate: 1.0000e-05
+Epoch 42: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 136s 180ms/step - accuracy: 0.9994 - loss: 0.0197 - val_accuracy: 0.9998 - val_loss: 0.0235 - learning_rate: 1.0000e-05
+Epoch 43: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9993 - loss: 0.0198 - val_accuracy: 0.9998 - val_loss: 0.0239 - learning_rate: 1.0000e-05
+Epoch 44: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 132s 175ms/step - accuracy: 0.9995 - loss: 0.0193 - val_accuracy: 0.9998 - val_loss: 0.0243 - learning_rate: 1.0000e-05
+Epoch 45: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 173ms/step - accuracy: 0.9994 - loss: 0.0196 - val_accuracy: 0.9996 - val_loss: 0.0242 - learning_rate: 1.0000e-05
+Epoch 46: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 174ms/step - accuracy: 0.9994 - loss: 0.0194 - val_accuracy: 0.9998 - val_loss: 0.0228 - learning_rate: 1.0000e-05
+Epoch 47: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 174ms/step - accuracy: 0.9994 - loss: 0.0192 - val_accuracy: 0.9998 - val_loss: 0.0222 - learning_rate: 1.0000e-05
+Epoch 48: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 136s 181ms/step - accuracy: 0.9994 - loss: 0.0196 - val_accuracy: 0.9998 - val_loss: 0.0225 - learning_rate: 1.0000e-05
+Epoch 49: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 131s 174ms/step - accuracy: 0.9994 - loss: 0.0193 - val_accuracy: 0.9997 - val_loss: 0.0242 - learning_rate: 1.0000e-05
+Epoch 50: val_accuracy did not improve from 0.99983
+755/755 ━━━━━━━━━━━━━━━━━━━━ 132s 174ms/step - accuracy: 0.9992 - loss: 0.0194 - val_accuracy: 0.9998 - val_loss: 0.0225 - learning_rate: 1.0000e-05

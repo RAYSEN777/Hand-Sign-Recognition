@@ -11,7 +11,7 @@ from PIL import Image, ImageTk, ImageDraw, ImageFont
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 model_yolo = YOLO('Model/YOLO/best.pt')
 
-MODEL_CNN_PATH = 'Model/CNN/cnn_best.keras'
+MODEL_CNN_PATH = 'Model/CNN/cnn_best2.keras'
 if os.path.exists(MODEL_CNN_PATH):
     model_cnn = tf.keras.models.load_model(MODEL_CNN_PATH)
     print(f"Berhasil memuat model CNN: {MODEL_CNN_PATH}")
@@ -54,7 +54,6 @@ last_seen_letter = None
 BLANK_LABEL = "_blank_" 
 
 def decode_ctc_step(predicted_label, confidence):
-    """Menerapkan prinsip CTC Decoding sejati menggunakan Class Pemisah (Blank)"""
     global final_word, last_stable_letter
     global letter_streak_counter, last_seen_letter
  
@@ -79,7 +78,6 @@ def decode_ctc_step(predicted_label, confidence):
                 lbl_word_output.config(text=final_word) 
 
 def process_frame(img):
-    """Memproses frame menggunakan YOLO dan CNN"""
     global last_stable_letter, last_seen_letter, letter_streak_counter
     
     results = model_yolo(img, stream=True, conf=0.5, verbose=False)
@@ -207,14 +205,12 @@ def stop_video():
     set_status("Berhenti", COLOR_TEXT_MUTED)
 
 def clear_word():
-    """Mengosongkan kata terjemahan yang terkumpul"""
     global final_word, last_stable_letter
     final_word = ""
     last_stable_letter = None
     lbl_word_output.config(text="...")
 
 def add_space():
-    """Menambahkan spasi pada kata"""
     global final_word
     final_word += " "
     lbl_word_output.config(text=final_word)

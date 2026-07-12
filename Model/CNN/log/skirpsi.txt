@@ -1,0 +1,17 @@
+tanggal 10 6 2026 konsul 
+
+60,395 dataset
+
+PROJECT
+====================
+Mendapatkan tiga model CNN dengan konfigurasi dataset yang berbeda yaitu :
+- Dataset mentah hasil potongan YOLO : Memiliki hasil yang paling buruk dan banyak kesalahan saat memprediksi gestur tangan
+- Dataset yang sudah dibersihkan : Memiliki hasil yang terbaik tinggal beberapa huruf salah yang memiliki gestur yang mirip masih salah prediksinya
+- Dataset yang sudah dibersihkan dan dipisahkan tangan kanan dan kiri : Memiliki hasil yang tidak sebagus dataset yang kedua dan masih lumayan banyak kesalahan prediksi 
+- Model terbaik di dapatkan setelah menambahkan jumlah dataset 
+
+
+
+
+
+
